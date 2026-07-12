@@ -1,0 +1,77 @@
+/* util-culture — careers intro + alternating media / navy-text tiles. */
+
+.util-culture {
+  padding-block: var(--section-padding);
+  padding-inline: max(24px, calc((100% - var(--max-width)) / 2 + 24px));
+}
+
+.util-culture > h2 {
+  margin-bottom: 12px;
+}
+
+.util-culture > .c-lede {
+  color: var(--ink-muted);
+  max-width: 80ch;
+  margin-bottom: 40px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.util-culture .c-tile {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.util-culture .c-media {
+  min-height: 320px;
+  background: var(--navy-card);
+}
+
+.util-culture .c-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.util-culture .c-text {
+  background: var(--navy-field);
+  color: #fff;
+  padding: 40px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.util-culture .c-text h2,
+.util-culture .c-text h3 {
+  color: #fff;
+  margin-bottom: 14px;
+}
+
+.util-culture .c-text p {
+  color: var(--navy-text-2);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* alternate the image side (tiles are the only div children) */
+.util-culture .c-tile:nth-of-type(even) .c-media {
+  order: 2;
+}
+
+@media (width <= 768px) {
+  .util-culture .c-tile,
+  .util-culture .c-tile:nth-of-type(even) .c-media {
+    grid-template-columns: 1fr;
+    order: 0;
+  }
+
+  .util-culture .c-media {
+    min-height: 220px;
+  }
+
+  .util-culture .c-text {
+    padding: 28px 24px;
+  }
+}

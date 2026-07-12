@@ -1,0 +1,191 @@
+/* partner — partner overview archetype (profile + alliance form band) */
+
+.partner {
+  padding-block: var(--section-padding);
+}
+
+.partner .wrap {
+  position: relative;
+}
+
+/* ---- profile (default): about prose + meta card ---- */
+.partner .profile-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 56px;
+  align-items: start;
+}
+
+.partner .profile-main h1 {
+  font-size: clamp(34px, 4vw, 52px);
+  margin-bottom: 24px;
+}
+
+.partner .profile-main p {
+  color: var(--ink-muted);
+  font-size: 17px;
+  line-height: 1.65;
+  margin-bottom: 18px;
+  max-width: 66ch;
+}
+
+.partner .profile-main a.ask {
+  color: var(--action-on-surface);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+.partner .profile-meta {
+  background: var(--surface-cool);
+  border: 1px solid var(--border-line);
+  border-radius: var(--radius);
+  padding: 30px 32px;
+  position: sticky;
+  top: 24px;
+}
+
+.partner .profile-meta dl {
+  margin: 0;
+}
+
+.partner .profile-meta dt {
+  font-family: var(--heading-font-family);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--navy-field);
+  margin-top: 18px;
+}
+
+.partner .profile-meta dt:first-child {
+  margin-top: 0;
+}
+
+.partner .profile-meta dd {
+  margin: 3px 0 0;
+  font-size: 15px;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+
+.partner .profile-meta dd a {
+  color: var(--action-on-surface);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+/* ---- alliance variant: navy Partner Alliance band + contact form ---- */
+.partner.alliance {
+  background: var(--navy-field);
+  color: #fff;
+  overflow: hidden;
+}
+
+.partner.alliance h2 {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.partner.alliance .alliance-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 56px;
+  align-items: start;
+}
+
+.partner.alliance .alliance-copy {
+  align-self: center;
+}
+
+.partner.alliance .alliance-copy p {
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--navy-text-1);
+  margin-bottom: 16px;
+  max-width: 46ch;
+}
+
+.partner.alliance .alliance-copy p strong {
+  color: #fff;
+}
+
+.partner.alliance .tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.partner.alliance .tag-list a.tag {
+  display: inline-block;
+  padding: 6px 14px;
+  border: 1px solid var(--rule-on-navy);
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--navy-text-2);
+  text-decoration: none;
+  transition: border-color 0.18s, color 0.18s;
+}
+
+.partner.alliance .tag-list a.tag:hover {
+  color: #fff;
+  border-color: var(--link-on-dark);
+}
+
+/* static contact form (D1 marketo stub) */
+.partner-form {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 30px;
+  box-shadow: var(--shadow-float);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.partner-form .field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.partner-form input,
+.partner-form select {
+  width: 100%;
+  padding: 13px 14px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--navy-field);
+  background: #fff;
+  border: 1px solid var(--border-line-strong);
+  border-radius: var(--radius-inner);
+}
+
+.partner-form input:focus-visible,
+.partner-form select:focus-visible {
+  outline: 2px solid var(--action-on-surface);
+  outline-offset: 1px;
+}
+
+.partner-form button.button {
+  width: 100%;
+  margin-top: 4px;
+  min-height: 48px;
+  cursor: pointer;
+}
+
+@media (width <= 900px) {
+  .partner .profile-grid,
+  .partner.alliance .alliance-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .partner .profile-meta {
+    position: static;
+  }
+}

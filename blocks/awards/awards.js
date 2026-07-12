@@ -6,6 +6,7 @@ export default function decorate(block) {
   let info = null;
   let shelf = null;
   let caption = null;
+  let cta = null;
 
   [...block.children].forEach((row) => {
     const cell = row.firstElementChild;
@@ -14,6 +15,8 @@ export default function decorate(block) {
       info = cell;
     } else if (cell.querySelectorAll('img').length > 1) {
       shelf = cell;
+    } else if (cell.querySelector('a')) {
+      cta = cell.querySelector('a').closest('p') || cell;
     } else if (cell.textContent.trim()) {
       caption = cell.querySelector('p') || cell;
     }
@@ -57,5 +60,13 @@ export default function decorate(block) {
   grid.append(right);
 
   wrap.append(grid);
+
+  if (cta) {
+    const ctaWrap = document.createElement('div');
+    ctaWrap.className = 'awards-cta';
+    ctaWrap.append(cta);
+    wrap.append(ctaWrap);
+  }
+
   block.append(wrap);
 }

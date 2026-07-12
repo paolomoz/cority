@@ -1,0 +1,62 @@
+# query-index for cority.com EDS site.
+# Feeds /query-index.json, consumed client-side by the listing (D2), latest-feeds
+# (D3), and search (D4) blocks. Facets are read from <meta> tags that the page
+# metadata block emits (title/description/image are standard; template, type,
+# cloud, solution, topic, author, published are authored per the facet contract
+# in stardust/full-site-plan.md and set by the Phase-4 generators).
+version: 1
+
+indices:
+  default:
+    include:
+      - '/**'
+    exclude:
+      - '/drafts/**'
+      - '/qa/**'
+      - '/tools/**'
+    target: /query-index.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: |
+          attribute(el, 'content')
+      description:
+        select: head > meta[name="description"]
+        value: |
+          attribute(el, 'content')
+      image:
+        select: head > meta[property="og:image"]
+        value: |
+          attribute(el, 'content')
+      template:
+        select: head > meta[name="template"]
+        value: |
+          attribute(el, 'content')
+      type:
+        select: head > meta[name="type"]
+        value: |
+          attribute(el, 'content')
+      cloud:
+        select: head > meta[name="cloud"]
+        value: |
+          attribute(el, 'content')
+      solution:
+        select: head > meta[name="solution"]
+        value: |
+          attribute(el, 'content')
+      topic:
+        select: head > meta[name="topic"]
+        value: |
+          attribute(el, 'content')
+      author:
+        select: head > meta[name="author"]
+        value: |
+          attribute(el, 'content')
+      published:
+        select: head > meta[name="published-time"]
+        value: |
+          attribute(el, 'content')
+      lastModified:
+        select: none
+        value: |
+          parseTimestamp(headers['last-modified'], 'ddd, DD MMM YYYY hh:mm:ss GMT')

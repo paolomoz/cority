@@ -16,3 +16,4 @@ helix-importer-ui
 .env.*
 qa/
 samples/
+query-index.json

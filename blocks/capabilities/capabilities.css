@@ -29,6 +29,10 @@
   transition: background 0.18s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.capabilities .cap-files summary.no-thumb {
+  grid-template-columns: minmax(0, 1fr) auto 28px;
+}
+
 .capabilities .cap-files summary:hover {
   background: var(--surface-cool);
 }

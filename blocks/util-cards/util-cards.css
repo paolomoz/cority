@@ -1,0 +1,106 @@
+/* util-cards — heading + text-card grids (contact intro / offices / benefits). */
+
+.util-cards {
+  padding-block: var(--section-padding);
+  padding-inline: max(24px, calc((100% - var(--max-width)) / 2 + 24px));
+}
+
+.util-cards > h2 {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.util-cards > .lede {
+  text-align: center;
+  color: var(--ink-muted);
+  max-width: 66ch;
+  margin: 0 auto 36px;
+}
+
+.util-cards .card-grid {
+  display: grid;
+  gap: 32px 48px;
+}
+
+.util-cards .card h3,
+.util-cards .card h4 {
+  font-size: 19px;
+  margin-bottom: 8px;
+  color: var(--navy-field);
+}
+
+.util-cards .card p {
+  font-size: 15px;
+  color: var(--ink-muted);
+  line-height: 1.55;
+}
+
+.util-cards .card a {
+  color: var(--action-on-surface);
+}
+
+/* trio — 3 centered intro cards */
+.util-cards.trio .card-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.util-cards.trio .card {
+  text-align: center;
+}
+
+/* offices — 3 address cards + map below */
+.util-cards.offices .card-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.util-cards.offices .card {
+  text-align: center;
+}
+
+.util-cards.offices .card-media {
+  margin-top: 40px;
+}
+
+.util-cards.offices .card-media img {
+  width: 100%;
+  height: auto;
+}
+
+/* benefits — 4-up compact label cards on the cool band */
+.util-cards.benefits {
+  background: var(--surface-cool);
+}
+
+.util-cards.benefits .card-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px 32px;
+}
+
+.util-cards.benefits .card {
+  text-align: center;
+  border-top: 2px solid var(--color-accent);
+  padding-top: 16px;
+}
+
+.util-cards.benefits .card h3 {
+  font-size: 17px;
+  margin-bottom: 0;
+}
+
+@media (width <= 900px) {
+  .util-cards.trio .card-grid,
+  .util-cards.offices .card-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .util-cards.benefits .card-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (width <= 480px) {
+  .util-cards.benefits .card-grid {
+    grid-template-columns: 1fr;
+  }
+}

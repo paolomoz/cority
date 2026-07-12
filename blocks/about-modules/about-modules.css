@@ -1,0 +1,72 @@
+/* about-modules — responsive grid of platform-solution links (about family). */
+
+.about-modules {
+  background: var(--surface-cool);
+  padding-block: var(--section-padding);
+}
+
+.about-modules h2 {
+  font-size: var(--heading-lg);
+  margin: 0;
+}
+
+.about-modules .am-intro {
+  margin: 12px 0 0;
+}
+
+.about-modules .am-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.about-modules .am-item {
+  min-width: 0;
+}
+
+.about-modules .am-item a {
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  padding: 14px 18px;
+  border: 1px solid var(--border-line-strong);
+  border-radius: var(--radius-inner);
+  background: var(--color-bg);
+  color: var(--navy-field);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.about-modules .am-item a:hover {
+  border-color: var(--action-on-surface);
+  color: var(--action-on-surface);
+}
+
+.about-modules .am-ask {
+  margin-top: 32px;
+}
+
+.about-modules .am-ask .ask,
+.about-modules .am-intro .ask {
+  color: var(--action-on-surface);
+  font-weight: 600;
+}
+
+@media (width <= 1024px) {
+  .about-modules .am-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (width <= 768px) {
+  .about-modules .am-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (width <= 480px) {
+  .about-modules .am-grid {
+    grid-template-columns: 1fr;
+  }
+}

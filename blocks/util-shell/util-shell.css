@@ -1,0 +1,59 @@
+/* util-shell — static dynamic-slot shells (tool / workday link-out). */
+
+.util-shell {
+  padding-block: var(--section-padding);
+  padding-inline: max(24px, calc((100% - var(--max-width)) / 2 + 24px));
+}
+
+.util-shell .shell-inner {
+  max-width: 72ch;
+}
+
+.util-shell h2,
+.util-shell h3 {
+  margin: 8px 0 14px;
+}
+
+.util-shell p {
+  color: var(--color-fg);
+  font-size: 17px;
+  line-height: 1.65;
+  margin-bottom: 16px;
+}
+
+.util-shell ul {
+  margin: 0 0 18px 22px;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.util-shell li {
+  margin-bottom: 8px;
+}
+
+.util-shell a {
+  color: var(--action-on-surface);
+}
+
+/* workday — careers job-board link-out with an impersonation notice */
+.util-shell.workday .shell-inner {
+  max-width: var(--max-width);
+}
+
+.util-shell.workday .notice {
+  background: var(--tint-info);
+  border: 1px solid var(--border-line-strong);
+  border-radius: var(--radius-inner);
+  padding: 16px 18px;
+  font-size: 14px;
+  color: var(--ink-muted);
+  margin-bottom: 24px;
+}
+
+.util-shell.workday .notice strong {
+  color: var(--navy-field);
+}
+
+/* tool — descriptive shell for the interactive Bayesian tool region.
+   Renders as clean prose (the live page is marketing copy); the
+   data-dynamic="tool-shell" marker flags where the interface mounts. */

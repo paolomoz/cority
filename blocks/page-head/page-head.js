@@ -94,15 +94,24 @@ export default function decorate(block) {
   });
 
   if (filters.length) {
-    const console = document.createElement('div');
-    console.className = 'console';
+    const consoleEl = document.createElement('div');
+    consoleEl.className = 'console';
     const form = document.createElement('form');
     form.method = 'get';
     form.action = '/resources/blog';
     form.dataset.dynamic = 'filter-console';
     form.append(...filters);
-    console.append(form);
-    out.push(console);
+    consoleEl.append(form);
+    out.push(consoleEl);
+    // drive the listing block: on any select change, emit the facet set
+    form.addEventListener('change', () => {
+      const detail = {};
+      form.querySelectorAll('select[data-filter-key]').forEach((sel) => {
+        if (sel.value) detail[sel.dataset.filterKey] = sel.value;
+      });
+      document.dispatchEvent(new CustomEvent('listing:filter', { detail }));
+    });
+    form.addEventListener('submit', (e) => e.preventDefault());
   }
   if (tabs) out.push(tabs);
   block.append(...out);
