@@ -1,0 +1,66 @@
+/* platform — unified platform ruled columns (canon .unified / .trio-cols) */
+
+.platform {
+  padding: var(--section-padding) 0;
+}
+
+.platform h2 {
+  text-align: center;
+  max-width: 28ch;
+  margin: 0 auto 14px;
+}
+
+.platform .lede-c {
+  max-width: 70ch;
+  margin: 0 auto 44px;
+  text-align: center;
+  color: var(--ink-muted);
+}
+
+.platform .trio-cols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.platform .trio-cols > div {
+  border-left: 1px solid var(--border-line);
+  padding: 6px 26px 4px;
+}
+
+.platform .trio-cols > div:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+
+.platform .trio-cols h3 {
+  font-size: clamp(19px, 1.9vw, 23px);
+  max-width: 16ch;
+  margin-bottom: 12px;
+}
+
+.platform .trio-cols p {
+  color: var(--ink-muted);
+  font-size: 15px;
+  max-width: 40ch;
+}
+
+.platform .askrow {
+  text-align: center;
+  margin-top: 38px;
+}
+
+@media (width <= 1024px) {
+  .platform .trio-cols {
+    grid-template-columns: 1fr;
+  }
+
+  .platform .trio-cols > div {
+    border-left: none;
+    border-top: 1px solid var(--border-line);
+    padding: 18px 0;
+  }
+
+  .platform .trio-cols > div:first-child {
+    border-top: none;
+  }
+}

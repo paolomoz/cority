@@ -1,0 +1,97 @@
+/* story-quote — ruled pull-quote (.pullq in the customer-story prototype). */
+
+.story-quote {
+  border-top: 1px solid var(--border-line-strong);
+  border-bottom: 1px solid var(--border-line-strong);
+  padding: 24px 0 22px;
+  margin: 28px 0;
+}
+
+.story-quote blockquote,
+.story-quote blockquote p {
+  font-size: clamp(19px, 1.9vw, 23px);
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--navy-field);
+}
+
+.story-quote blockquote::before {
+  content: "\201c";
+  color: var(--cority-orange);
+  font-family: var(--heading-font-family);
+  font-weight: 500;
+  font-size: 44px;
+  line-height: 0.6;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.story-quote cite {
+  font-style: normal;
+  display: block;
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ink-muted);
+}
+
+/* ------------------------------------------------------------------
+   Narrative composition — page-scoped support for the customer-story
+   prose section this block lives in (ports .st-body / .st-sec rhythm:
+   meta-rail kickers authored as <p><strong>…</strong></p>, 56px band
+   padding, 46px inter-chapter gaps). Loads only on pages using this
+   block, so it cannot leak into other prose articles. */
+
+/* prototype rhythm: .st-body 56px pad + per-chapter <section> 64px pads
+   + .st-sec 46px margin → 120px head, 174px inter-chapter, 194px foot */
+main .section.prose {
+  padding: calc(56px + var(--section-padding)) 0 calc(102px + var(--section-padding));
+}
+
+/* 70ch measure + the wrappers' 24px inline padding (border-box) */
+main .section.prose > .default-content-wrapper {
+  padding-block: 0;
+  max-width: calc(70ch + 48px);
+}
+
+main .section.prose > .story-quote-wrapper {
+  max-width: calc(70ch + 48px);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+main .section.prose > .default-content-wrapper > p {
+  margin-bottom: 16px;
+}
+
+main .section.prose > .default-content-wrapper > h2 {
+  font-size: clamp(22px, 2.2vw, 29px);
+  margin: 0 0 16px;
+}
+
+/* kicker paragraphs (<p><strong>The context</strong></p>) → meta-rail */
+main .section.prose > .default-content-wrapper > p:has(> strong:only-child) {
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin: calc(46px + 2 * var(--section-padding)) 0 8px;
+}
+
+main .section.prose > .default-content-wrapper > p:has(> strong:only-child) strong {
+  font-weight: inherit;
+}
+
+main .section.prose > .default-content-wrapper:first-of-type > p:has(> strong:only-child):first-child {
+  margin-top: 0;
+}
+
+/* the story page's cta-band copy runs wider/smaller than the canon band
+   (prototype inline override: 44ch @ 19px) */
+main .section.cta p:not(.button-wrapper) {
+  max-width: 44ch;
+  margin: 0 0 24px;
+  font-size: 19px;
+}

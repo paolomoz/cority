@@ -1,0 +1,137 @@
+/* access-form — gated access panel (prototype .access + .d1-form). */
+
+.access-form {
+  border: 1px solid var(--border-line-strong);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.access-form .cover {
+  background: var(--surface-cool);
+  padding: 26px;
+  display: flex;
+  justify-content: center;
+}
+
+.access-form .cover img {
+  max-width: 250px;
+  box-shadow: var(--shadow-float);
+  border-radius: var(--radius-inner);
+}
+
+.access-form .pad {
+  padding: 24px 26px 28px;
+}
+
+.access-form .pad h2 {
+  font-size: 21px;
+  margin-bottom: 6px;
+}
+
+.access-form .meta-rail {
+  margin-bottom: 16px;
+}
+
+.access-form .d1-form .row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.access-form .fld {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 12px;
+}
+
+.access-form .d1-form label {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-fg);
+}
+
+.access-form label .req {
+  color: var(--color-accent);
+}
+
+.access-form input[type='text'],
+.access-form input[type='email'],
+.access-form input[type='tel'] {
+  min-height: 44px;
+  border: 1px solid var(--border-line-strong);
+  border-radius: var(--radius-inner);
+  padding: 0 12px;
+  font-family: var(--body-font-family);
+  font-size: 15px;
+  color: var(--color-fg);
+  background: #fff;
+}
+
+.access-form input:focus-visible {
+  outline: 2px solid var(--navy-field);
+  outline-offset: 1px;
+}
+
+.access-form fieldset {
+  border: 1px solid var(--border-line);
+  border-radius: var(--radius-inner);
+  padding: 12px 14px;
+  margin: 6px 0 16px;
+}
+
+.access-form legend {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-muted);
+  padding: 0 6px;
+}
+
+.access-form .checks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 14px;
+}
+
+.access-form .chk {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 14px;
+  min-height: 24px;
+}
+
+.access-form .chk input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-accent);
+}
+
+.access-form button.button {
+  width: 100%;
+}
+
+.access-form .fineprint {
+  font-size: 12px;
+  color: var(--ink-muted);
+  margin-top: 12px;
+}
+
+/* sticky aside within the foundation split section */
+main .section.split > .access-form-wrapper {
+  position: sticky;
+  top: 24px;
+}
+
+@media (width <= 1024px) {
+  main .section.split > .access-form-wrapper {
+    position: static;
+  }
+}
+
+@media (width <= 640px) {
+  .access-form .d1-form .row,
+  .access-form .checks {
+    grid-template-columns: 1fr;
+  }
+}

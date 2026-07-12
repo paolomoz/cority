@@ -1,0 +1,62 @@
+/* solutions — solution ledger rows (canon .sol-ledger) */
+
+.solutions {
+  padding: var(--section-padding) 0;
+}
+
+.solutions h2 {
+  max-width: 26ch;
+  margin-bottom: 12px;
+}
+
+.solutions .lede-c {
+  color: var(--ink-muted);
+  max-width: 72ch;
+  margin-bottom: 36px;
+}
+
+.solutions .sol-row {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 5fr) minmax(0, 3fr);
+  gap: 40px;
+  align-items: center;
+  border-top: 1px solid var(--border-line-strong);
+  padding: 26px 0;
+}
+
+.solutions .sol-row:last-of-type {
+  border-bottom: 1px solid var(--border-line-strong);
+}
+
+.solutions .sol-row h3 {
+  font-size: clamp(19px, 1.9vw, 23px);
+}
+
+.solutions .sol-row p {
+  color: var(--ink-muted);
+  font-size: 15px;
+}
+
+.solutions .sol-row img {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-float);
+  width: 100%;
+  max-width: 280px;
+  justify-self: end;
+}
+
+.solutions .askrow {
+  text-align: center;
+  margin-top: 36px;
+}
+
+@media (width <= 1024px) {
+  .solutions .sol-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .solutions .sol-row img {
+    justify-self: start;
+  }
+}

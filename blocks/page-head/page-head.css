@@ -1,0 +1,153 @@
+/* page-head — navy head band (article | listing | resource variants).
+   CSS ported verbatim from prototype .art-head / .l-hero / .g-head. */
+
+.page-head {
+  background: var(--navy-field);
+  color: #fff;
+  padding-block: 44px 40px;
+  padding-inline: max(24px, calc((100% - var(--max-width)) / 2 + 24px));
+}
+
+.page-head h1 {
+  color: #fff;
+  max-width: 26ch;
+  font-size: clamp(28px, 3.2vw, 44px);
+}
+
+.page-head .kicker {
+  color: var(--link-on-dark);
+  margin-bottom: 14px;
+}
+
+/* article byline */
+.page-head .byline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  margin-top: 18px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--navy-text-2);
+}
+
+.page-head .byline .tags {
+  display: flex;
+  gap: 18px;
+}
+
+.page-head .byline .tags a {
+  color: var(--link-on-dark);
+  text-decoration: none;
+  border-bottom: 1px solid currentcolor;
+  padding: 4px 0;
+}
+
+/* resource variant (g-head) */
+.page-head.resource {
+  padding-block: 40px 44px;
+}
+
+.page-head.resource h1 {
+  max-width: 28ch;
+  font-size: clamp(28px, 3vw, 42px);
+}
+
+.page-head .lede {
+  color: var(--navy-text-1);
+  max-width: 64ch;
+  margin-top: 16px;
+  font-size: 17px;
+}
+
+/* listing variant (l-hero) */
+.page-head.listing {
+  padding-block: 36px 0;
+}
+
+.page-head.listing h1 {
+  max-width: none;
+  font-size: clamp(30px, 3.4vw, 46px);
+}
+
+.page-head .console {
+  border-top: 1px solid var(--rule-on-navy);
+  margin-top: 24px;
+  padding: 20px 0 22px;
+}
+
+.page-head .console form {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.page-head .f-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 200px;
+  flex: 1;
+  max-width: 300px;
+}
+
+.page-head .f-group label {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--navy-text-3);
+}
+
+.page-head .f-group select {
+  min-height: 44px;
+  border-radius: var(--radius-inner);
+  border: 1px solid var(--rule-on-navy);
+  background: var(--navy-card);
+  color: #fff;
+  font-family: var(--body-font-family);
+  font-size: 15px;
+  padding: 0 12px;
+}
+
+.page-head .f-group select:focus-visible {
+  outline: 2px solid var(--link-on-dark);
+  outline-offset: 2px;
+}
+
+.page-head .type-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 0 26px;
+  margin-top: 18px;
+}
+
+.page-head .type-tabs a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 14px;
+  border: 1px solid var(--rule-on-navy);
+  border-radius: 999px;
+  padding: 11px 18px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.page-head .type-tabs a:hover {
+  background: var(--white-a12);
+}
+
+.page-head .type-tabs a[aria-current='page'] {
+  background: #fff;
+  color: var(--navy-field);
+  font-weight: 500;
+}
+
+@media (width <= 640px) {
+  .page-head .f-group {
+    max-width: none;
+  }
+}

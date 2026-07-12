@@ -1,0 +1,29 @@
+/* event-aside — event image aside (.ev-body img in the prototype). */
+
+.event-aside img {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-float);
+  width: 100%;
+}
+
+/* ------------------------------------------------------------------
+   Split-section composition — page-scoped support for the event body
+   (.ev-body measures + .reg-note rule). Loads only on pages using this
+   block, so it cannot leak into other split sections. */
+
+main .section.split > .default-content-wrapper > p {
+  max-width: 62ch;
+}
+
+main .section.split > .default-content-wrapper > h2 {
+  max-width: 24ch;
+}
+
+/* registration note: the closing paragraph of the event body */
+main .section.split > .default-content-wrapper > p:last-of-type {
+  border-top: 1px solid var(--border-line-strong);
+  border-bottom: 1px solid var(--border-line-strong);
+  padding: 18px 0;
+  margin-top: 26px;
+  font-size: 16px;
+}

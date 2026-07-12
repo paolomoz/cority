@@ -1,0 +1,52 @@
+/* cta-split — canon CTA band, split layout (safety-cloud .cta-band.cta-split) */
+
+.cta-split {
+  background: var(--navy-field) url('https://www.cority.com/wp-content/uploads/2025/08/bg-banner.webp') center / cover no-repeat;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  padding: var(--section-padding) 0;
+}
+
+.cta-split::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgb(0 25 46 / 72%) 0%, rgb(0 39 71 / 35%) 100%);
+}
+
+.cta-split .wrap {
+  position: relative;
+}
+
+.cta-split .cta-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+  gap: 56px;
+  align-items: center;
+}
+
+.cta-split h2 {
+  color: #fff;
+  margin: 0;
+}
+
+.cta-split p {
+  max-width: 56ch;
+  margin: 0 0 24px;
+  font-size: 19px;
+  line-height: 1.4;
+  color: #fff;
+  font-weight: 300;
+}
+
+.cta-split p.button-wrapper {
+  margin-bottom: 0;
+}
+
+@media (width <= 1024px) {
+  .cta-split .cta-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}

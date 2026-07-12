@@ -1,0 +1,124 @@
+/* industries — feature + index split (canon .industries) */
+
+.industries {
+  padding: var(--section-padding) 0;
+}
+
+.industries h2 {
+  margin-bottom: 36px;
+}
+
+.industries .ind-split {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.industries .ind-lead {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: 420px;
+}
+
+.industries .ind-lead img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1);
+}
+
+.industries .ind-lead::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--duotone-navy);
+}
+
+.industries .ind-lead .annot {
+  position: absolute;
+  left: 18px;
+  bottom: 18px;
+  z-index: 1;
+  background: var(--navy-footer);
+  border: 1px solid var(--rule-on-navy);
+  border-radius: var(--radius-inner);
+  padding: 10px 14px;
+  color: var(--navy-text-2);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.industries .ind-index {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.industries .ind-index li {
+  border-top: 1px solid var(--border-line-strong);
+}
+
+.industries .ind-index li:last-child {
+  border-bottom: 1px solid var(--border-line-strong);
+}
+
+.industries .ind-index a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 96px 28px;
+  gap: 20px;
+  align-items: center;
+  padding: 12px 0;
+  text-decoration: none;
+  color: var(--navy-field);
+}
+
+.industries .ind-index a:hover .nm {
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+}
+
+.industries .ind-index .nm {
+  font-family: var(--heading-font-family);
+  font-weight: 500;
+  font-size: clamp(18px, 1.7vw, 22px);
+}
+
+.industries .ind-index img {
+  width: 96px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: var(--radius-inner);
+}
+
+.industries .ind-index .go {
+  color: var(--action-on-surface);
+  font-size: 18px;
+}
+
+@media (width <= 1024px) {
+  .industries .ind-split {
+    grid-template-columns: 1fr;
+  }
+
+  .industries .ind-lead {
+    min-height: 280px;
+  }
+}
+
+@media (width <= 640px) {
+  .industries .ind-index a {
+    grid-template-columns: minmax(0, 1fr) 72px 24px;
+    gap: 12px;
+  }
+
+  .industries .ind-index img {
+    width: 72px;
+    height: 44px;
+  }
+}

@@ -1,0 +1,61 @@
+/* values — ruled grid of value cards. Ported verbatim from the our-story
+   prototype's .values / .val-grid / .val rules (cool band). */
+
+.values {
+  background: var(--surface-cool);
+  padding: var(--section-padding) max(24px, calc((100% - var(--max-width)) / 2 + 24px));
+}
+
+.values h2 {
+  margin-bottom: 12px;
+}
+
+.values .lede {
+  color: var(--ink-muted);
+  max-width: 72ch;
+  margin-bottom: 36px;
+}
+
+.values .val-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 48px;
+}
+
+.values .val {
+  border-top: 1px solid var(--border-line-strong);
+  padding: 22px 0 26px;
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.values .val img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: var(--radius-inner);
+}
+
+.values .val h3 {
+  font-size: 19px;
+  margin-bottom: 6px;
+}
+
+.values .val p {
+  font-size: 14.5px;
+  color: var(--ink-muted);
+}
+
+@media (width <= 1024px) {
+  .values .val-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (width <= 640px) {
+  .values .val-grid {
+    grid-template-columns: 1fr;
+  }
+}

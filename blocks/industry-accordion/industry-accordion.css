@@ -1,0 +1,100 @@
+/* industry-accordion — file rows of challenge/solution grids (canon .ind-files / .cs-grid) */
+
+.industry-accordion {
+  padding: var(--section-padding) 0;
+}
+
+.industry-accordion h2 {
+  margin-bottom: 30px;
+}
+
+.industry-accordion .ind-files details {
+  border-top: 1px solid var(--border-line-strong);
+}
+
+.industry-accordion .ind-files details:last-of-type {
+  border-bottom: 1px solid var(--border-line-strong);
+}
+
+.industry-accordion .ind-files summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 16px 12px;
+  min-height: 48px;
+  transition: background 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.industry-accordion .ind-files summary:hover {
+  background: var(--surface-cool);
+}
+
+.industry-accordion .ind-files summary::-webkit-details-marker {
+  display: none;
+}
+
+.industry-accordion .ind-files summary h3 {
+  font-size: clamp(17px, 1.7vw, 21px);
+  margin: 0;
+  transition: color 0.18s;
+}
+
+.industry-accordion .ind-files summary:hover h3 {
+  color: var(--action-on-surface);
+}
+
+.industry-accordion .ind-files summary::after {
+  content: "+";
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--color-accent);
+  transition: transform 0.18s;
+}
+
+.industry-accordion .ind-files details[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.industry-accordion .cs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 44px;
+  padding: 6px 12px 30px;
+}
+
+.industry-accordion .cs-grid h4 {
+  font-family: var(--heading-font-family);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 10px;
+}
+
+.industry-accordion .cs-grid ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.industry-accordion .cs-grid li {
+  border-top: 1px solid var(--border-line);
+  padding: 9px 0;
+  font-size: 14.5px;
+  color: var(--color-fg);
+}
+
+.industry-accordion .cs-grid li:first-child {
+  border-top: none;
+}
+
+@media (width <= 1024px) {
+  .industry-accordion .cs-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}

@@ -1,0 +1,118 @@
+/* resources — front-page cross-promo (canon .resources; `light` = white band) */
+
+.resources {
+  background: var(--surface-cool);
+  padding: var(--section-padding) 0;
+}
+
+.resources.light {
+  background: #fff;
+}
+
+.resources h2 {
+  margin-bottom: 36px;
+}
+
+.resources a {
+  color: var(--action-on-surface);
+}
+
+.resources .lead-story {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+  gap: 48px;
+  align-items: center;
+  padding-bottom: 40px;
+}
+
+.resources .lead-story > img {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-float);
+}
+
+.resources .lead-story h3 {
+  font-size: clamp(22px, 2.4vw, 30px);
+  margin: 12px 0 18px;
+  max-width: 24ch;
+}
+
+.resources .lead-story a.typed {
+  color: var(--color-accent);
+}
+
+.resources .res-index {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 48px;
+}
+
+.resources .res-item {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 20px;
+  align-items: center;
+  border-top: 1px solid var(--border-line-strong);
+  padding: 20px 0;
+}
+
+.resources .res-item > img {
+  width: 120px;
+  height: 76px;
+  object-fit: cover;
+  border-radius: var(--radius-inner);
+}
+
+.resources .res-item h3 {
+  font-size: 17px;
+  margin: 4px 0 8px;
+}
+
+.resources .typed {
+  font-weight: 400;
+  font-size: 14.5px;
+}
+
+.resources .k-one {
+  color: var(--chip-one-ink);
+}
+
+.resources .k-env {
+  color: var(--chip-env-ink);
+}
+
+.resources .k-health {
+  color: var(--chip-health-ink);
+}
+
+.resources .k-safety {
+  color: var(--chip-safety-ink);
+}
+
+.resources .k-quality {
+  color: var(--chip-quality-ink);
+}
+
+.resources .k-sus {
+  color: var(--chip-sus-ink);
+}
+
+@media (width <= 1024px) {
+  .resources .lead-story {
+    grid-template-columns: 1fr;
+  }
+
+  .resources .res-index {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (width <= 640px) {
+  .resources .res-item {
+    grid-template-columns: 96px minmax(0, 1fr);
+  }
+
+  .resources .res-item > img {
+    width: 96px;
+    height: 60px;
+  }
+}

@@ -1,0 +1,17 @@
+/* about-intro — ported verbatim from the our-story prototype's .a-intro. */
+
+.about-intro {
+  padding: var(--section-padding) max(24px, calc((100% - var(--max-width)) / 2 + 24px)) 24px;
+}
+
+.about-intro h2 {
+  max-width: 26ch;
+  margin-bottom: 20px;
+}
+
+.about-intro p {
+  max-width: 72ch;
+  font-size: 17px;
+  line-height: 1.65;
+  margin-bottom: 16px;
+}

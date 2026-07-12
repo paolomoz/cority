@@ -1,0 +1,5 @@
+/* section-metadata — never rendered; defensive hide until decorate removes it */
+
+.section-metadata {
+  display: none;
+}

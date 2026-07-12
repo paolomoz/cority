@@ -1,0 +1,37 @@
+/* related — ruled cross-promo index band (prototype .rel). */
+
+.related {
+  background: var(--surface-cool);
+  padding-block: var(--section-padding);
+  padding-inline: max(24px, calc((100% - var(--max-width)) / 2 + 24px));
+}
+
+.related h2 {
+  margin-bottom: 26px;
+}
+
+.related a.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+  border-top: 1px solid var(--border-line-strong);
+  padding: 18px 0;
+  text-decoration: none;
+  color: var(--navy-field);
+  font-family: var(--heading-font-family);
+  font-weight: 500;
+  font-size: clamp(16px, 1.6vw, 20px);
+}
+
+.related a.row:last-of-type {
+  border-bottom: 1px solid var(--border-line-strong);
+}
+
+.related a.row:hover {
+  color: var(--action-on-surface);
+}
+
+.related a.row .go {
+  color: var(--action-on-surface);
+}

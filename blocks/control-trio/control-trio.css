@@ -1,0 +1,133 @@
+/* control-trio — labeled diagram on cool surface (canon .control) */
+
+.control-trio {
+  background: var(--surface-cool);
+  padding: var(--section-padding) 0;
+}
+
+.control-trio h2 {
+  text-align: center;
+  max-width: 24ch;
+  margin: 0 auto 44px;
+}
+
+.control-trio .diagram {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 6fr) minmax(0, 3fr);
+  gap: 0;
+  align-items: center;
+}
+
+.control-trio .diagram .center {
+  grid-column: 2;
+  position: relative;
+  z-index: 1;
+}
+
+.control-trio .diagram .center img {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-float);
+}
+
+.control-trio .callout {
+  position: relative;
+  padding: 18px 22px;
+  background: #fff;
+  border: 1px solid var(--border-line-strong);
+  border-radius: var(--radius);
+}
+
+.control-trio .callout h3 {
+  font-size: 19px;
+  margin-bottom: 8px;
+}
+
+.control-trio .callout p {
+  font-size: 14.5px;
+  color: var(--ink-muted);
+}
+
+.control-trio .callout img {
+  border-radius: var(--radius-inner);
+  margin-bottom: 12px;
+  border: 1px solid var(--border-line);
+}
+
+.control-trio .co-a {
+  grid-column: 1;
+  grid-row: 1;
+  margin-right: -14px;
+}
+
+.control-trio .co-b {
+  grid-column: 3;
+  grid-row: 1;
+  margin-left: -14px;
+}
+
+.control-trio .co-c {
+  grid-column: 2;
+  grid-row: 2;
+  max-width: 440px;
+  margin: -14px auto 0;
+  z-index: 2;
+}
+
+.control-trio .co-a::after,
+.control-trio .co-b::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 44px;
+  height: 1px;
+  background: var(--ink-muted);
+}
+
+.control-trio .co-a::after {
+  right: -44px;
+}
+
+.control-trio .co-b::after {
+  left: -44px;
+}
+
+.control-trio .co-c::before {
+  content: "";
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  width: 1px;
+  height: 24px;
+  background: var(--ink-muted);
+}
+
+.control-trio .askrow {
+  text-align: center;
+  margin-top: 40px;
+}
+
+@media (width <= 1024px) {
+  .control-trio .diagram {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .control-trio .diagram .center,
+  .control-trio .co-a,
+  .control-trio .co-b,
+  .control-trio .co-c {
+    grid-column: 1;
+    grid-row: auto;
+    margin: 0;
+  }
+
+  .control-trio .co-a::after,
+  .control-trio .co-b::after,
+  .control-trio .co-c::before {
+    display: none;
+  }
+
+  .control-trio .co-c {
+    max-width: none;
+  }
+}

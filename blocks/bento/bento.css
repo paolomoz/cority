@@ -1,0 +1,124 @@
+/* bento — performance bento on navy (canon .perf) */
+
+.bento {
+  background: var(--navy-field);
+  color: #fff;
+  padding: var(--section-padding) 0;
+}
+
+.bento h2 {
+  color: #fff;
+  margin: 0 auto 38px;
+  max-width: 26ch;
+  text-align: center;
+}
+
+.bento .bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.bento .bento-card {
+  background: var(--navy-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-inset-navy);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.bento .bento-card h3 {
+  color: #fff;
+  font-size: clamp(21px, 2.2vw, 28px);
+  padding: 30px 30px 10px;
+}
+
+.bento .bento-card p {
+  color: var(--navy-text-2);
+  padding: 0 30px 22px;
+  max-width: 64ch;
+}
+
+.bento .bento-card img {
+  width: 100%;
+  object-fit: cover;
+  margin-top: auto;
+}
+
+.bento .b-data {
+  grid-column: span 5;
+}
+
+.bento .b-work {
+  grid-column: span 7;
+}
+
+.bento .b-insight {
+  grid-column: span 8;
+}
+
+.bento .bento-quote {
+  grid-column: span 4;
+  background: var(--navy-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-inset-navy);
+  padding: 28px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bento .bento-quote .qmark {
+  color: var(--cority-orange);
+  font-family: var(--heading-font-family);
+  font-weight: 500;
+  font-size: 64px;
+  line-height: 0.7;
+}
+
+.bento .bento-quote .headshot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 0 var(--radius) 0 100%;
+  object-fit: cover;
+  filter: grayscale(1);
+}
+
+.bento .bento-quote blockquote {
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--navy-text-1);
+  margin-top: 28px;
+  max-width: 26ch;
+}
+
+.bento .bento-quote cite {
+  font-style: normal;
+  font-size: 13.5px;
+  font-weight: 400;
+  color: var(--navy-text-3);
+  margin-top: auto;
+}
+
+.bento .askrow {
+  margin-top: 36px;
+  text-align: center;
+}
+
+@media (width <= 1024px) {
+  .bento .bento-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .bento .b-data,
+  .bento .b-work,
+  .bento .b-insight,
+  .bento .bento-quote {
+    grid-column: span 6;
+  }
+}

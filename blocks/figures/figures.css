@@ -1,0 +1,128 @@
+/* figures — big-number ledgers. Ported verbatim from the prototypes'
+   .st-results (variant: results) and .nums (variant: band) rules. */
+
+.figures {
+  padding: var(--section-padding) max(24px, calc((100% - var(--max-width)) / 2 + 24px));
+}
+
+/* ---- results variant (.st-results — customer story ledger) ---- */
+.figures.results {
+  background: var(--surface-cool);
+}
+
+.figures.results .stat-row {
+  display: grid;
+  grid-template-columns: clamp(220px, 30vw, 400px) minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0 26px;
+  border-top: 1px solid var(--border-line-strong);
+  padding: 24px 0;
+}
+
+.figures.results .stat-row:last-of-type {
+  border-bottom: 1px solid var(--border-line-strong);
+}
+
+.figures.results .stat-row .n {
+  color: var(--navy-field);
+  font-size: clamp(30px, 3.4vw, 52px);
+  white-space: nowrap;
+}
+
+.figures.results .stat-row .cap {
+  color: var(--color-fg);
+  font-size: 17px;
+  line-height: 1.5;
+  max-width: 62ch;
+  position: relative;
+  padding-left: 44px;
+}
+
+.figures.results .stat-row .cap::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 28px;
+  height: 2px;
+  background: var(--cority-orange);
+}
+
+@media (width <= 1024px) {
+  .figures.results .stat-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .figures.results .stat-row .cap {
+    padding-left: 44px;
+  }
+}
+
+/* ---- band variant (.nums — our-story By The Numbers) ---- */
+.figures.band {
+  background: var(--navy-field);
+  color: #fff;
+}
+
+.figures.band h2 {
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.figures.band .meta-rail {
+  color: var(--navy-text-3);
+}
+
+.figures.band .num-row {
+  display: grid;
+}
+
+.figures.band .num-cell {
+  border-left: 1px solid var(--rule-on-navy);
+  padding: 26px 26px 8px;
+}
+
+.figures.band .num-cell:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+
+.figures.band .num-cell .n {
+  font-family: var(--heading-font-family);
+  font-weight: 500;
+  font-size: clamp(36px, 4.2vw, 60px);
+  line-height: 1;
+  color: #fff;
+  display: block;
+}
+
+.figures.band .num-cell .cap {
+  color: var(--navy-text-2);
+  font-size: 15px;
+  margin-top: 8px;
+  display: block;
+}
+
+@media (width <= 1024px) {
+  .figures.band .num-row {
+    grid-template-columns: 1fr 1fr !important;
+    row-gap: 22px;
+  }
+
+  .figures.band .num-cell:nth-child(odd) {
+    border-left: none;
+    padding-left: 0;
+  }
+}
+
+@media (width <= 640px) {
+  .figures.band .num-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  .figures.band .num-cell {
+    border-left: none;
+    padding: 14px 0;
+  }
+}

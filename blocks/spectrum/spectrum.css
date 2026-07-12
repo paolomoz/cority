@@ -1,0 +1,135 @@
+/* spectrum — imaged spectrum columns (canon .risk / .spectrum) */
+
+.spectrum {
+  padding: var(--section-padding) 0;
+}
+
+.spectrum h2 {
+  max-width: 26ch;
+  margin-bottom: 40px;
+}
+
+.spectrum .grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.spectrum .seg {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+
+.spectrum .seg .bar {
+  height: 8px;
+}
+
+.spectrum .s-one .bar {
+  background: var(--chip-one-ink);
+}
+
+.spectrum .s-env .bar {
+  background: var(--chip-env-ink);
+}
+
+.spectrum .s-health .bar {
+  background: var(--chip-health-ink);
+}
+
+.spectrum .s-safety .bar {
+  background: var(--chip-safety-ink);
+}
+
+.spectrum .s-quality .bar {
+  background: var(--chip-quality-ink);
+}
+
+.spectrum .s-sus .bar {
+  background: var(--chip-sus-ink);
+}
+
+.spectrum .seg .inner {
+  padding: 0 16px 22px;
+  border-left: 1px solid var(--border-line);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.spectrum .seg:first-child .inner {
+  border-left: none;
+  padding-left: 0;
+}
+
+.spectrum .seg .thumb {
+  margin: 16px 0 2px;
+  border-radius: var(--radius-inner);
+  height: 110px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.spectrum .k-one {
+  color: var(--chip-one-ink);
+}
+
+.spectrum .k-env {
+  color: var(--chip-env-ink);
+}
+
+.spectrum .k-health {
+  color: var(--chip-health-ink);
+}
+
+.spectrum .k-safety {
+  color: var(--chip-safety-ink);
+}
+
+.spectrum .k-quality {
+  color: var(--chip-quality-ink);
+}
+
+.spectrum .k-sus {
+  color: var(--chip-sus-ink);
+}
+
+.spectrum .seg h3 {
+  font-size: 18px;
+  color: var(--navy-field);
+  flex: 1;
+}
+
+.spectrum .seg .go {
+  color: var(--action-on-surface);
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.spectrum .seg:hover h3 {
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+}
+
+@media (width <= 1024px) {
+  .spectrum .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 28px;
+  }
+
+  .spectrum .seg:nth-child(4) .inner {
+    border-left: none;
+    padding-left: 0;
+  }
+}
+
+@media (width <= 640px) {
+  .spectrum .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .spectrum .seg .inner {
+    border-left: none;
+    padding-left: 0;
+  }
+}

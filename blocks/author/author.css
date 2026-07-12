@@ -1,0 +1,76 @@
+/* author — attribution box + prev/next (prototype .author-box / .pn-nav). */
+
+.author {
+  border-top: 2px solid var(--navy-field);
+  padding-top: 22px;
+}
+
+.author .bio {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.author .bio img {
+  width: 120px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.author .bio p {
+  font-size: 14.5px;
+  color: var(--ink-muted);
+}
+
+.author .bio .nm {
+  font-family: var(--heading-font-family);
+  font-weight: 500;
+  color: var(--navy-field);
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.author .pn-nav {
+  border-top: 1px solid var(--border-line-strong);
+  margin-top: 44px;
+  padding: 26px 0 8px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.author .pn-nav a {
+  font-weight: 400;
+  max-width: 40ch;
+}
+
+/* placement: sit in the article column of a toc-layout section
+   (matches foundation wrapper selector specificity; block CSS loads later) */
+main .section.toc-layout > div[class$='-wrapper'].author-wrapper {
+  position: static;
+  grid-column: 2;
+  max-width: 72ch;
+  margin-top: -12px; /* 64px grid gap − 52px canon offset */
+}
+
+/* centered article measure inside a prose section (single-column articles):
+   canon article body is a full 72ch text measure; the foundation wrapper's
+   72ch includes its 24px side paddings, so widen by them (border-box) */
+main .section.prose.author-container > .default-content-wrapper {
+  max-width: calc(72ch + 48px);
+}
+
+main .section.prose > .author-wrapper {
+  max-width: calc(72ch + 48px);
+  margin: -12px auto 0;
+  padding: 0 24px var(--section-padding);
+}
+
+@media (width <= 1024px) {
+  main .section.toc-layout > div[class$='-wrapper'].author-wrapper {
+    grid-column: auto;
+    margin-top: 0;
+  }
+}

@@ -1,0 +1,57 @@
+/* toc — sticky article rail (prototype .art-toc). Stickiness comes from the
+   foundation `.section.toc-layout` wrapper rule. */
+
+.toc {
+  border-top: 2px solid var(--navy-field);
+  padding-top: 14px;
+}
+
+.toc .meta-rail {
+  margin-bottom: 12px;
+}
+
+.toc ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.toc a {
+  display: block;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: 14px;
+  padding: 9px 0;
+  border-top: 1px solid var(--border-line);
+  min-height: 40px;
+}
+
+.toc a:hover {
+  color: var(--action-on-surface);
+}
+
+.toc li:first-child a {
+  border-top: none;
+}
+
+/* article figure treatment for the prose column this rail pairs with
+   (prototype .art-body figure — no global figure style exists yet) */
+main .section.toc-layout > .default-content-wrapper figure {
+  margin: 34px 0;
+  border: 1px solid var(--border-line);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+
+main .section.toc-layout > .default-content-wrapper figure img {
+  margin: 0 auto;
+}
+
+main .section.toc-layout > .default-content-wrapper figcaption {
+  font-size: 13px;
+  color: var(--ink-muted);
+  padding-top: 12px;
+  font-weight: 400;
+}

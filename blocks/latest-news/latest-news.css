@@ -1,0 +1,66 @@
+/* latest-news — ruled index of news cards. Ported verbatim from the
+   our-story prototype's latest-news section (.res-index / .res-item). */
+
+.latest-news {
+  padding: var(--section-padding) max(24px, calc((100% - var(--max-width)) / 2 + 24px));
+}
+
+.latest-news h2 {
+  margin-bottom: 30px;
+}
+
+.latest-news .res-index {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.latest-news .res-item {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 20px;
+  align-items: center;
+  border-top: 1px solid var(--border-line-strong);
+  padding: 20px 0;
+}
+
+.latest-news .res-item img {
+  width: 120px;
+  height: 76px;
+  object-fit: cover;
+  border-radius: var(--radius-inner);
+}
+
+.latest-news .res-item .kicker {
+  color: var(--chip-one-ink);
+}
+
+.latest-news .res-item h3 {
+  font-size: 17px;
+  margin: 4px 0 8px;
+}
+
+.latest-news .res-item .desc {
+  font-size: 14px;
+  color: var(--ink-muted);
+}
+
+.latest-news .res-item .more {
+  font-size: 14.5px;
+}
+
+.latest-news .res-item .more a {
+  color: var(--action-on-surface);
+  font-weight: 400;
+}
+
+@media (width <= 640px) {
+  .latest-news .res-item {
+    grid-template-columns: 96px minmax(0, 1fr);
+  }
+
+  .latest-news .res-item img {
+    width: 96px;
+    height: 60px;
+  }
+}

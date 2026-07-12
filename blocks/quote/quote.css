@@ -1,0 +1,116 @@
+/* quote — attributed customer quotes (canon .q-ledger; navy variant = .i-quote) */
+
+.quote {
+  background: var(--surface-cool);
+  padding: var(--section-padding) 0;
+}
+
+.quote .meta-rail {
+  margin-bottom: 8px;
+}
+
+.quote h2 {
+  margin-bottom: 30px;
+}
+
+.quote .q-row {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 8fr) minmax(0, 3fr);
+  gap: 26px;
+  align-items: start;
+  border-top: 1px solid var(--border-line-strong);
+  padding: 26px 0;
+}
+
+.quote .q-row:last-of-type {
+  border-bottom: 1px solid var(--border-line-strong);
+}
+
+.quote .q-row .qm {
+  color: var(--cority-orange);
+  font-family: var(--heading-font-family);
+  font-weight: 500;
+  font-size: 52px;
+  line-height: 0.7;
+}
+
+.quote .q-row blockquote {
+  font-size: clamp(17px, 1.7vw, 21px);
+  font-weight: 300;
+  line-height: 1.45;
+  color: var(--navy-field);
+}
+
+.quote .q-row cite {
+  font-style: normal;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ink-muted);
+}
+
+.quote .q-row figcaption {
+  justify-self: end;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.quote .q-row figcaption img {
+  height: 40px;
+  width: auto;
+  background: #fff;
+  border-radius: var(--radius-inner);
+  padding: 4px 8px;
+  border: 1px solid var(--border-line);
+}
+
+/* navy variant — feature quote (industry customer-quote) */
+.quote.navy {
+  background: var(--navy-field);
+  color: #fff;
+}
+
+.quote.navy .meta-rail {
+  color: var(--navy-text-3);
+}
+
+.quote.navy .feature blockquote {
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: 300;
+  line-height: 1.45;
+  max-width: 44ch;
+}
+
+.quote.navy .feature blockquote::before {
+  content: "“";
+  display: block;
+  font-size: 60px;
+  font-weight: 500;
+  color: var(--cority-orange);
+  line-height: 0.6;
+  margin-bottom: 16px;
+}
+
+.quote.navy .feature cite {
+  display: block;
+  font-style: normal;
+  margin-top: 18px;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--navy-text-2);
+}
+
+@media (width <= 1024px) {
+  .quote .q-row {
+    grid-template-columns: 36px minmax(0, 1fr);
+  }
+
+  .quote .q-row figcaption {
+    grid-column: 2;
+    justify-self: start;
+    align-items: flex-start;
+    text-align: left;
+  }
+}
