@@ -19,15 +19,18 @@ export async function loadIndex() {
   return cache;
 }
 
-// facet match: every provided filter must match (comma-lists match on membership)
+const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+
+// facet match: every provided filter must match (comma-lists match on membership).
+// Compares slug-normalized forms so a tag slug (esg-management) matches an index
+// topic value ("ESG Management").
 export function matches(row, filters) {
   return Object.entries(filters).every(([key, want]) => {
     if (!want) return true;
-    const have = (row[key] || '').toLowerCase();
-    const wants = String(want).toLowerCase();
+    const have = row[key] || '';
     if (!have) return false;
-    // row value may be a comma-list of tags
-    return have.split(',').map((s) => s.trim()).includes(wants) || have === wants;
+    const wants = slug(want);
+    return have.split(',').map((s) => slug(s)).includes(wants) || slug(have) === wants;
   });
 }
 

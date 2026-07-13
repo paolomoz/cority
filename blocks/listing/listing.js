@@ -14,7 +14,8 @@
  */
 import { loadIndex, query } from '../../scripts/query-index.js';
 
-const CONFIG_KEYS = ['template', 'type', 'page-size', 'pagesize', 'heading', 'sort'];
+const CONFIG_KEYS = ['template', 'type', 'page-size', 'pagesize', 'heading', 'sort',
+  'filter-topic', 'filter-author', 'filter-cloud', 'filter-solution'];
 
 function postCard(row, lead) {
   const article = document.createElement('article');
@@ -64,9 +65,16 @@ export default function decorate(block) {
       else if (key === 'type') cfg.type = val;
       else if (key === 'heading') cfg.heading = val;
       else if (key === 'sort') cfg.sort = val;
+      else if (key.startsWith('filter-')) { (cfg.fixed ||= {})[key.slice(7)] = val; }
     } else {
       contentRows.push(row);
     }
+  });
+  // URL params (?topic=…&author=…) also seed fixed filters (taxonomy pages)
+  const params = new URLSearchParams(window.location.search);
+  ['topic', 'author', 'cloud', 'solution', 'type'].forEach((k) => {
+    const v = params.get(k);
+    if (v) (cfg.fixed ||= {})[k] = v;
   });
 
   block.dataset.dynamic = 'query-listing';
@@ -130,14 +138,17 @@ export default function decorate(block) {
     const existingLead = block.querySelector('.lead-post');
     if (existingLead) existingLead.remove();
     results = query(allRows, {
-      template: cfg.template, type: cfg.type, filters, sort: cfg.sort || 'published',
+      template: cfg.template,
+      type: cfg.type,
+      filters: { ...(cfg.fixed || {}), ...filters },
+      sort: cfg.sort || 'published',
     });
     renderPage();
   };
 
   loadIndex().then((rows) => {
     allRows = rows;
-    const filtered = query(rows, { template: cfg.template, type: cfg.type });
+    const filtered = query(rows, { template: cfg.template, type: cfg.type, filters: cfg.fixed || {} });
     if (!filtered.length) return; // keep authored fallback
     // replace fallback with dynamic
     const lead = block.querySelector('.lead-post');
