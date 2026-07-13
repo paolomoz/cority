@@ -1,22 +1,27 @@
 /*
- * Cority chrome — code-owned header (stardust canon: header.html d34c5991).
- * Utility bar + primary nav + demo CTA. Mobile nav is a CSS checkbox hack;
- * JS only syncs aria-expanded. In-scope pages link root-relative; everything
- * else stays absolute to the live origin (archetype-scope link policy).
+ * Cority chrome — code-owned header. Utility bar + primary nav + demo CTA.
+ * All internal links are root-relative to the migrated site. Mobile nav is a
+ * CSS checkbox hack (JS syncs aria-expanded). Language switcher is an
+ * accessible dropdown (below). NOTE: this migration is English-only, so
+ * non-EN options set the preference but have no translated target to route to
+ * until localized content exists.
  */
+const LANGS = [
+  ['en', 'EN', 'English'], ['ar', 'AR', 'العربية'], ['fr', 'FR', 'Français'],
+  ['de', 'DE', 'Deutsch'], ['it', 'IT', 'Italiano'], ['pt', 'PT', 'Português'],
+  ['es', 'ES', 'Español'],
+];
+const langItems = LANGS.map(([code, , name]) => `<li role="none"><button role="menuitem" type="button" class="lang-item" data-lang="${code}" lang="${code}"${code === 'en' ? ' aria-current="true"' : ''}>${name}</button></li>`).join('');
 const CHROME = `
 <div class="utility" role="region" aria-label="Announcements and language">
   <div class="wrap">
     <p><span class="story-tag">Customer story</span>How Aptiv cut workplace incidents in half. <a href="/customer-stories-1/aptiv-environmental-software-case-study">The Story</a></p>
-    <ul class="langs" aria-label="Language">
-      <li><a href="#" hreflang="ar">AR</a></li>
-      <li><a href="#" hreflang="en" aria-current="true">EN</a></li>
-      <li><a href="#" hreflang="fr">FR</a></li>
-      <li><a href="#" hreflang="de">DE</a></li>
-      <li><a href="#" hreflang="it">IT</a></li>
-      <li><a href="#" hreflang="pt">PT</a></li>
-      <li><a href="#" hreflang="es">ES</a></li>
-    </ul>
+    <div class="lang">
+      <button type="button" class="lang-btn" aria-haspopup="true" aria-expanded="false" aria-label="Select language">
+        <span class="lang-current">EN</span><span class="lang-caret" aria-hidden="true">▾</span>
+      </button>
+      <ul class="lang-menu" role="menu" hidden>${langItems}</ul>
+    </div>
   </div>
 </div>
 <div class="site">
@@ -28,15 +33,15 @@ const CHROME = `
     <label class="burger-btn" for="nav-toggle" aria-hidden="true">☰</label>
     <nav class="primary" id="primary-nav" aria-label="Primary">
       <ul>
-        <li><a href="https://www.cority.com/cortex-ai/">Cortex AI</a></li>
-        <li><a href="https://www.cority.com/corityone/">Platform</a></li>
-        <li><a href="https://www.cority.com/corityone/compliance-management-software/">Solutions</a></li>
-        <li><a href="https://www.cority.com/industries/">Industries</a></li>
-        <li><a href="https://www.cority.com/resources/">Resources</a></li>
+        <li><a href="/cortex-ai">Cortex AI</a></li>
+        <li><a href="/corityone">Platform</a></li>
+        <li><a href="/corityone/compliance-management-software">Solutions</a></li>
+        <li><a href="/industries">Industries</a></li>
+        <li><a href="/resources">Resources</a></li>
         <li><a href="/our-story">About Us</a></li>
       </ul>
     </nav>
-    <a class="btn btn-primary header-cta" href="https://www.cority.com/get-a-demo/">Get a Demo</a>
+    <a class="btn btn-primary header-cta" href="/get-a-demo">Get a Demo</a>
   </div>
 </div>
 `;
@@ -62,4 +67,44 @@ export default async function decorate(block) {
   toggle.addEventListener('change', () => {
     toggle.setAttribute('aria-expanded', String(toggle.checked));
   });
+
+  // language switcher — accessible dropdown
+  const lang = block.querySelector('.lang');
+  const btn = lang.querySelector('.lang-btn');
+  const menu = lang.querySelector('.lang-menu');
+  const current = lang.querySelector('.lang-current');
+  const items = [...menu.querySelectorAll('.lang-item')];
+
+  const open = (state) => {
+    btn.setAttribute('aria-expanded', String(state));
+    menu.hidden = !state;
+    if (state) items.find((i) => i.getAttribute('aria-current') === 'true')?.focus();
+  };
+  btn.addEventListener('click', () => open(menu.hidden));
+  document.addEventListener('click', (e) => { if (!lang.contains(e.target)) open(false); });
+  menu.addEventListener('keydown', (e) => {
+    const i = items.indexOf(document.activeElement);
+    if (e.key === 'Escape') { open(false); btn.focus(); } else if (e.key === 'ArrowDown') { e.preventDefault(); items[(i + 1) % items.length].focus(); } else if (e.key === 'ArrowUp') { e.preventDefault(); items[(i - 1 + items.length) % items.length].focus(); }
+  });
+
+  // restore persisted choice
+  let saved = 'en';
+  try { saved = localStorage.getItem('cority-lang') || 'en'; } catch (e) { /* no-op */ }
+  const setLang = (code) => {
+    items.forEach((it) => it.removeAttribute('aria-current'));
+    const pick = items.find((it) => it.dataset.lang === code) || items[0];
+    pick.setAttribute('aria-current', 'true');
+    current.textContent = pick.dataset.lang.toUpperCase();
+    document.documentElement.lang = pick.dataset.lang;
+  };
+  setLang(saved);
+
+  items.forEach((it) => it.addEventListener('click', () => {
+    setLang(it.dataset.lang);
+    try { localStorage.setItem('cority-lang', it.dataset.lang); } catch (e) { /* no-op */ }
+    open(false);
+    btn.focus();
+    // English-only migration: no localized target to navigate to yet. When
+    // localized content exists, route here (e.g. `/${code}${path}`).
+  }));
 }
