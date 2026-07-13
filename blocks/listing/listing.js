@@ -148,7 +148,9 @@ export default function decorate(block) {
 
   loadIndex().then((rows) => {
     allRows = rows;
-    const filtered = query(rows, { template: cfg.template, type: cfg.type, filters: cfg.fixed || {} });
+    const filtered = query(rows, {
+      template: cfg.template, type: cfg.type, filters: cfg.fixed || {},
+    });
     if (!filtered.length) return; // keep authored fallback
     // replace fallback with dynamic
     const lead = block.querySelector('.lead-post');
