@@ -42,14 +42,13 @@ header .header-wrapper {
   min-height: 44px;
 }
 
-/* language switcher — GTranslate widget (mirrors the source's gtranslate mechanism) */
+/* language switcher — drives Google's translate engine (mirrors the source's mechanism) */
 .header .utility .lang {
   position: relative;
   min-height: 40px;
 }
 
-/* stylelint-disable selector-class-pattern -- .gtranslate_wrapper is mandated by the GTranslate widget */
-.header .utility .gtranslate_wrapper select {
+.header .utility .lang-select {
   min-height: 40px;
   padding: 6px 30px 6px 14px;
   background: transparent;
@@ -62,14 +61,13 @@ header .header-wrapper {
   appearance: none;
 }
 
-.header .utility .gtranslate_wrapper select:hover {
+.header .utility .lang-select:hover {
   background: var(--white-a12);
 }
 
-.header .utility .gtranslate_wrapper select option {
+.header .utility .lang-select option {
   color: var(--navy-field);
 }
-/* stylelint-enable selector-class-pattern */
 
 /* Google Translate injected chrome — hide banner/tooltip, keep page layout stable */
 .goog-te-banner-frame.skiptranslate,

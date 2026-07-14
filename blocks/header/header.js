@@ -1,9 +1,9 @@
 /*
- * Cority chrome — code-owned header. English chrome; the language switcher is the
- * GTranslate free widget (client-side Google translation, same URL), mirroring the
- * source site's mechanism (gtranslate, url_structure "none", langs ar/en/fr/de/it/pt/es).
- * Machine-translated locale pages live under content/<code>/ for review only; they
- * are NOT the language mechanism.
+ * Cority chrome — code-owned header. English chrome; the language switcher drives
+ * Google's website-translate element (the same engine the source's GTranslate plugin
+ * uses) for client-side translation on the same URL. The choice persists in the
+ * `googtrans` cookie so it re-applies on every page. Machine-translated locale pages
+ * under content/<code>/ are retained for review only — they are NOT the mechanism.
  */
 const NAV = [
   ['Cortex AI', '/cortex-ai'],
@@ -13,35 +13,68 @@ const NAV = [
   ['Resources', '/resources'],
   ['About Us', '/our-story'],
 ];
-const GT_LANGS = ['en', 'ar', 'fr', 'de', 'it', 'pt', 'es'];
+const LANGS = [
+  ['en', 'English'], ['ar', 'العربية'], ['fr', 'Français'], ['de', 'Deutsch'],
+  ['it', 'Italiano'], ['pt', 'Português'], ['es', 'Español'],
+];
+const RTL = new Set(['ar']);
+const INCLUDED = 'ar,fr,de,it,pt,es';
 
-function loadGTranslate() {
-  window.gtranslateSettings = window.gtranslateSettings || {
-    default_language: 'en',
-    native_language_names: true,
-    detect_browser_language: false,
-    languages: GT_LANGS,
-    wrapper_selector: '.gtranslate_wrapper',
-    flag_style: '3d',
+function currentLang() {
+  const m = document.cookie.match(/(?:^|;\s*)googtrans=\/en\/(\w+)/);
+  return m ? m[1] : 'en';
+}
+
+function setGoogTransCookie(code) {
+  const host = window.location.hostname;
+  const root = host.replace(/^www\./, '');
+  const val = code === 'en' ? '' : `/en/${code}`;
+  const expire = code === 'en' ? ';expires=Thu, 01 Jan 1970 00:00:00 GMT' : '';
+  [`;path=/`, `;path=/;domain=${host}`, `;path=/;domain=.${root}`].forEach((scope) => {
+    document.cookie = `googtrans=${val}${scope}${expire}`;
+  });
+}
+
+function loadEngine() {
+  if (document.getElementById('google-translate-engine')) return;
+  const holder = document.createElement('div');
+  holder.id = 'google_translate_element';
+  holder.className = 'notranslate';
+  holder.style.display = 'none';
+  document.body.append(holder);
+  window.googleTranslateElementInit = () => {
+    // eslint-disable-next-line no-new
+    new window.google.translate.TranslateElement(
+      { pageLanguage: 'en', includedLanguages: INCLUDED, autoDisplay: false },
+      'google_translate_element',
+    );
   };
-  if (!document.getElementById('gtranslate-widget-js')) {
-    const s = document.createElement('script');
-    s.id = 'gtranslate-widget-js';
-    s.src = 'https://cdn.gtranslate.net/widgets/latest/dropdown.js';
-    s.defer = true;
-    document.body.append(s);
-  }
+  const s = document.createElement('script');
+  s.id = 'google-translate-engine';
+  s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+  document.body.append(s);
+}
+
+function applyLang(code) {
+  if (code === 'en') { setGoogTransCookie('en'); window.location.reload(); return; }
+  setGoogTransCookie(code);
+  document.documentElement.dir = RTL.has(code) ? 'rtl' : 'ltr';
+  const combo = document.querySelector('.goog-te-combo');
+  if (combo) { combo.value = code; combo.dispatchEvent(new Event('change')); } else window.location.reload();
 }
 
 export default async function decorate(block) {
+  const loc = currentLang();
+  if (RTL.has(loc)) document.documentElement.dir = 'rtl';
   const navItems = NAV.map(([label, href]) => `<li><a href="${href}">${label}</a></li>`).join('');
+  const options = LANGS.map(([code, name]) => `<option value="${code}"${code === loc ? ' selected' : ''}>${name}</option>`).join('');
 
   block.innerHTML = `
 <div class="utility" role="region" aria-label="Announcements and language">
   <div class="wrap">
     <p><span class="story-tag">Customer story</span>How Aptiv cut workplace incidents in half. <a href="/customer-stories-1/aptiv-environmental-software-case-study">The Story</a></p>
     <div class="lang notranslate">
-      <div class="gtranslate_wrapper" aria-label="Select language"></div>
+      <select class="lang-select" aria-label="Select language">${options}</select>
     </div>
   </div>
 </div>
@@ -70,5 +103,7 @@ export default async function decorate(block) {
   toggle.setAttribute('aria-expanded', 'false');
   toggle.addEventListener('change', () => toggle.setAttribute('aria-expanded', String(toggle.checked)));
 
-  loadGTranslate();
+  block.querySelector('.lang-select').addEventListener('change', (e) => applyLang(e.target.value));
+
+  loadEngine();
 }
