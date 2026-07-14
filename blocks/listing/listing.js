@@ -13,6 +13,7 @@
  * Listens for `listing:filter` events from the page-head filter console.
  */
 import { loadIndex, query } from '../../scripts/query-index.js';
+import { currentLocale } from '../../scripts/locale.js';
 
 const CONFIG_KEYS = ['template', 'type', 'page-size', 'pagesize', 'heading', 'sort',
   'filter-topic', 'filter-author', 'filter-cloud', 'filter-solution'];
@@ -137,12 +138,13 @@ export default function decorate(block) {
     index.textContent = '';
     const existingLead = block.querySelector('.lead-post');
     if (existingLead) existingLead.remove();
+    const loc = currentLocale();
     results = query(allRows, {
       template: cfg.template,
       type: cfg.type,
       filters: { ...(cfg.fixed || {}), ...filters },
       sort: cfg.sort || 'published',
-    });
+    }).filter((r) => (r.locale || 'en') === loc);
     renderPage();
   };
 

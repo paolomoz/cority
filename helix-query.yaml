@@ -44,3 +44,6 @@ indices:
       published:
         select: head > meta[name="published-time"]
         value: attribute(el, 'content')
+      locale:
+        select: head > meta[name="locale"]
+        value: attribute(el, 'content')

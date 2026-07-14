@@ -84,5 +84,22 @@ const CHROME = `
 `;
 
 export default async function decorate(block) {
+  const { currentLocale, labelsFor } = await import('../../scripts/locale.js');
+  const loc = currentLocale();
+  const L = labelsFor(loc);
   block.innerHTML = CHROME;
+
+  // localize the subscribe band
+  const subMsg = block.querySelector('.subscribe p');
+  if (subMsg) subMsg.textContent = L.subscribeMsg;
+  const subBtn = block.querySelector('.subscribe a.btn');
+  if (subBtn) subBtn.textContent = L.subscribe;
+
+  // locale-prefix internal footer links so navigation stays in-locale
+  if (loc !== 'en') {
+    block.querySelectorAll('a[href^="/"]').forEach((a) => {
+      const href = a.getAttribute('href');
+      if (!href.startsWith(`/${loc}/`)) a.setAttribute('href', `/${loc}${href === '/' ? '' : href}`);
+    });
+  }
 }
