@@ -515,3 +515,43 @@ main .section.split > .default-content-wrapper > h2 {
     animation-duration: 0.01ms !important;
   }
 }
+
+/* ---------- RTL baseline (Arabic) ---------- */
+html[dir="rtl"] {
+  text-align: right;
+}
+
+html[dir="rtl"] ul,
+html[dir="rtl"] ol {
+  padding-right: 1.2em;
+  padding-left: 0;
+}
+
+html[dir="rtl"] .kicker {
+  align-self: flex-end;
+}
+
+html[dir="rtl"] .header nav.primary {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+html[dir="rtl"] .header .utility .lang-menu {
+  right: auto;
+  left: 0;
+}
+
+html[dir="rtl"] .header .header-cta {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+html[dir="rtl"] main .section.cta p,
+html[dir="rtl"] main .section.prose > .default-content-wrapper {
+  text-align: right;
+}
+
+html[dir="rtl"] .btn,
+html[dir="rtl"] a.button {
+  direction: rtl;
+}

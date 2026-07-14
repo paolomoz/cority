@@ -95,8 +95,31 @@ export default async function decorate(block) {
   const subBtn = block.querySelector('.subscribe a.btn');
   if (subBtn) subBtn.textContent = L.subscribe;
 
-  // locale-prefix internal footer links so navigation stays in-locale
+  // localize the mega-footer labels + prefix internal links so nav stays in-locale
   if (loc !== 'en') {
+    const F = L.footer || {};
+    const swapText = (el) => {
+      const k = el.textContent.trim();
+      if (F[k]) el.textContent = F[k];
+    };
+    // section headings + text-only nav links + the promo blurb
+    block.querySelectorAll('.foot-promo h2, .mega nav h3, .mega nav a, .foot-promo p').forEach(swapText);
+    // legal nav links (Contact/Privacy/Legal) are individual anchors
+    block.querySelectorAll('.legal a').forEach(swapText);
+    // copyright line is the legal paragraph with no anchors
+    block.querySelectorAll('.legal p').forEach((p) => { if (!p.querySelector('a')) swapText(p); });
+    // "See It In Action ➜" — map key stored without the decorative arrow
+    const see = block.querySelector('.see');
+    if (see) {
+      const base = see.textContent.replace(/\s*➜\s*$/, '').trim();
+      if (F[base]) see.textContent = `${F[base]} ➜`;
+    }
+    // award captions are an anchor wrapping an image then a caption — swap only the trailing text node
+    block.querySelectorAll('.awards-mini a').forEach((a) => {
+      const t = [...a.childNodes].find((n) => n.nodeType === 3 && n.textContent.trim());
+      if (t && F[t.textContent.trim()]) t.textContent = F[t.textContent.trim()];
+    });
+
     block.querySelectorAll('a[href^="/"]').forEach((a) => {
       const href = a.getAttribute('href');
       if (!href.startsWith(`/${loc}/`)) a.setAttribute('href', `/${loc}${href === '/' ? '' : href}`);
