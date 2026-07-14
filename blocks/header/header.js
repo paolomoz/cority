@@ -30,7 +30,7 @@ function setGoogTransCookie(code) {
   const root = host.replace(/^www\./, '');
   const val = code === 'en' ? '' : `/en/${code}`;
   const expire = code === 'en' ? ';expires=Thu, 01 Jan 1970 00:00:00 GMT' : '';
-  [`;path=/`, `;path=/;domain=${host}`, `;path=/;domain=.${root}`].forEach((scope) => {
+  [';path=/', `;path=/;domain=${host}`, `;path=/;domain=.${root}`].forEach((scope) => {
     document.cookie = `googtrans=${val}${scope}${expire}`;
   });
 }
