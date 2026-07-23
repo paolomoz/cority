@@ -37,7 +37,7 @@
 }
 
 .resources .lead-story a.typed {
-  color: var(--color-accent);
+  color: var(--action-on-surface);
 }
 
 .resources .res-index {
